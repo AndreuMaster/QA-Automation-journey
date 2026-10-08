@@ -28,7 +28,8 @@ const cars = [
     }];
 
 const budget = 50000;
-let totalCarInStock = 0;
+const totalCarsInStock = cars.reduce(
+    (total, car) => total + car.stock, 0);
 
 for(const carData of cars){
     console.log(`${carData.brand} costs ${carData.price} and we have ${carData.stock} in stock.`);
@@ -49,13 +50,48 @@ for(const carData of cars){
     else {
         console.log(`${carData.brand} is not affordable.`);
     }
+}
 
-    totalCarInStock += carData.stock;
+const firstAffordableCar = firstAffordableCarInStock();
+
+
+if (firstAffordableCar !== null) {
+    console.log(`First affordable car: ${firstAffordableCar.brand}`);
+} else {
+    console.log("No affordable cars found.");
 }
 
 console.log(`${cars.length} different car models available.`);
-console.log(`There are ${totalCarInStock} cars available`);
-totalCarInStock = 0;
+console.log(`There are ${totalCarsInStock} cars available`);
+
+const totalCarsSold = sellStock(totalCarsInStock);
+
+function firstAffordableCarInStock() {
+    let index = 0;
+    let firstAffordableCar = null;
+    do {
+        const car = cars[index];
+        if (car.price <= budget) {
+            firstAffordableCar = car;
+        }
+        else {
+            index++;
+        }
+    }
+    while (firstAffordableCar === null && index < cars.length);
+    return firstAffordableCar;
+}
+
+function sellStock(stock) {
+    let totalCarsSold = 0;
+    while (stock > 5) {
+        totalCarsSold++;
+        stock--;
+        console.log(`Remaining cars ${stock}`);
+    }
+    console.log(`${totalCarsSold} cars have been sold.`);
+    return totalCarsSold;
+}
 
 //#Fuctions 
 function isCarOnBudget(carData, budget) {
@@ -66,16 +102,18 @@ function isCarAvailable(carData) {
     return carData.stock > 0;
 }
 
-function priceRangeClassification(price) {
+function priceRangeClassification(priceAmount) {
     switch (true) {
-        case price < 30000:
+        case priceAmount < 30000:
             console.log("Cheap car");
             break;
-        case price <= 60000:
+        case priceAmount <= 60000:
             console.log("Medium price car");
             break;
-        case price > 60000:
+        case priceAmount > 60000:
             console.log("Expensive car");
             break;
+            default:
+                console.log("Not defined");
     }
 }
