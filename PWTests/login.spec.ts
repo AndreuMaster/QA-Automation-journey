@@ -52,8 +52,8 @@ for (const loginCase of loginCases) {
 
 test("Logout after login with valid credentials", async ({ page }) => {
   // Navigate to login page
-  //await page.goto("https://www.saucedemo.com/");
-  await page.goto("no url");
+  await page.goto("https://www.saucedemo.com/");
+
   // Enter username
   await page.fill("#user-name", "standard_user");
   // Enter password
@@ -67,5 +67,4 @@ test("Logout after login with valid credentials", async ({ page }) => {
   await page.click("#logout_sidebar_link");
 
   await expect(page).toHaveURL(`https://www.saucedemo.com`);
-
 });
