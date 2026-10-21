@@ -52,7 +52,7 @@ for (const loginCase of loginCases) {
 
 test("Logout after login with valid credentials", async ({ page }) => {
   // Navigate to login page
-  await page.goto("https://www.saucedemo.com/");
+  await age.goto("https://www.saucedemo.com/");
   // Enter username
   await page.fill("#user-name", "standard_user");
   // Enter password

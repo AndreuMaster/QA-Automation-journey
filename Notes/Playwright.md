@@ -8,6 +8,10 @@
 npx playwright test //all tests
 npx playwright test test/XXXX.spec.js //execute specific test
 
+# Record trace:
+npx playwright test --trace 
+npx playwright show-report
+
 # Keys when writing tests:
 
 "#login-button" Will look for an element which ID is "login-button"
