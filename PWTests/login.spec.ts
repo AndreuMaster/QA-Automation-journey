@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { findSourceMap } from "node:module";
-/*
+
+
 test("Login with valid credentials", async ({ page }) => {
   // Navigate to login page
   await page.goto("https://www.saucedemo.com/");
@@ -79,7 +79,7 @@ test("First checkbox is checked", async ({ page }) => {
   
   await expect(firstBox).toBeChecked();  
 });
-*/
+
 test("Hover first profile", async ({ page }) => {
   await page.goto("https://the-internet.herokuapp.com/hovers");
 
