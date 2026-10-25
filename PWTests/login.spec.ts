@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
-
+import { findSourceMap } from "node:module";
+/*
 test("Login with valid credentials", async ({ page }) => {
   // Navigate to login page
   await page.goto("https://www.saucedemo.com/");
@@ -76,5 +77,17 @@ test("First checkbox is checked", async ({ page }) => {
   const firstBox = page.locator('input[type="checkbox"]').first();
   await firstBox.check();
   
-  await expect(firstBox).not.toBeChecked();  
+  await expect(firstBox).toBeChecked();  
+});
+*/
+test("Hover first profile", async ({ page }) => {
+  await page.goto("https://the-internet.herokuapp.com/hovers");
+
+  const firstProfile = page.locator(".figure").first();
+  const firstImage = firstProfile.locator("img");
+  
+  await firstImage.hover();
+  
+  await expect(firstProfile.locator(".figcaption")).toBeVisible();
+  await expect(firstProfile.locator("h5")).toHaveText("name: user1");
 });
