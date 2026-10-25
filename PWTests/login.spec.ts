@@ -68,3 +68,13 @@ test("Logout after login with valid credentials", async ({ page }) => {
 
   await expect(page).toHaveURL(`https://www.saucedemo.com`);
 });
+
+test("First checkbox is checked", async ({ page }) => {
+  // Navigate to login page
+  await page.goto("https://the-internet.herokuapp.com/checkboxes");
+
+  const firstBox = page.locator('input[type="checkbox"]').first();
+  await firstBox.check();
+  
+  await expect(firstBox).not.toBeChecked();  
+});
