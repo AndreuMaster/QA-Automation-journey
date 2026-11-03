@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { LoginPage } from '../Pages/LoginPage.js';
 
 
 test("Login with valid credentials", async ({ page }) => {
@@ -90,4 +91,12 @@ test("Hover first profile", async ({ page }) => {
   
   await expect(firstProfile.locator(".figcaption")).toBeVisible();
   await expect(firstProfile.locator("h5")).toHaveText("name: user1");
+});
+
+
+test('User can login', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login('standard_user', 'secret_sauce');
+  await loginPage.assertOnDashboard();
 });
