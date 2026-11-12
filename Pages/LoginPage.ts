@@ -1,6 +1,5 @@
-
-import { expect } from '@playwright/test';
-import type { Page, Locator } from '@playwright/test';
+import { expect } from "@playwright/test";
+import type { Page, Locator } from "@playwright/test";
 
 export class LoginPage {
   readonly page: Page;
@@ -11,14 +10,14 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.locator('#user-name');
-    this.passwordInput = page.locator('#password');
-    this.loginButton = page.locator('#login-button');
-    this.pageTitle = page.locator('.title');
+    this.usernameInput = page.locator("#user-name");
+    this.passwordInput = page.locator("#password");
+    this.loginButton = page.locator("#login-button");
+    this.pageTitle = page.locator(".title");
   }
 
   async goto(): Promise<void> {
-    await this.page.goto('https://www.saucedemo.com/');
+    await this.page.goto("https://www.saucedemo.com/");
   }
 
   async login(username: string, password: string): Promise<void> {
@@ -29,6 +28,6 @@ export class LoginPage {
 
   async assertOnDashboard(): Promise<void> {
     await expect(this.page).toHaveURL(/inventory/);
-    await expect(this.pageTitle).toHaveText('Products');
+    await expect(this.pageTitle).toHaveText("Products");
   }
 }
